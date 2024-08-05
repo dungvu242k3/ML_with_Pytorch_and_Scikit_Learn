@@ -17,10 +17,8 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-
 X_combined = np.vstack((X_train, X_test))
 y_combined = np.hstack((y_train, y_test))
-
 
 forest = RandomForestClassifier(n_estimators=25, random_state=1, n_jobs=2)
 forest.fit(X_train, y_train)
@@ -41,6 +39,6 @@ conf_matrix = confusion_matrix(y_test, y_pred)
 print('Confusion Matrix:')
 print(conf_matrix)
 
-report = classification_report(y_test, y_pred)
+Report = classification_report(y_test, y_pred)
 print('Classification Report:')
-print(report)
+print(Report)
