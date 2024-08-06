@@ -9,7 +9,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
-# Tải tập dữ liệu Iris
 iris = datasets.load_iris()
 X = iris.data
 y = iris.target
@@ -53,7 +52,6 @@ def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
         X_test_std, y_test = X[test_idx, :], y[test_idx]
         plt.scatter(X_test_std[:, 0], X_test_std[:, 1], c=y_test, edgecolor='k', marker='x', cmap=ListedColormap(('red', 'green', 'blue')), s=100)
 
-# Vẽ các vùng quyết định
 plt.figure(figsize=(10, 6))
 plot_decision_regions(X_combined_std, y_combined, classifier=svm, test_idx=range(105, 150))
 plt.xlabel('Petal length [standardized]')
@@ -62,7 +60,6 @@ plt.legend(loc='upper left')
 plt.tight_layout()
 plt.show()
 
-# Đánh giá mô hình
 y_pred = svm.predict(X_test_std)
 accuracy = accuracy_score(y_test, y_pred)
 report = classification_report(y_test, y_pred, target_names=iris.target_names)
@@ -72,7 +69,6 @@ print(f"Accuracy: {accuracy * 100:.2f}%")
 print("Classification Report:")
 print(report)
 
-# Vẽ ma trận nhầm lẫn
 plt.figure(figsize=(8, 6))
 sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=iris.target_names, yticklabels=iris.target_names)
 plt.xlabel('Predicted')
