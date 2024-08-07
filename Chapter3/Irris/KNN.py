@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.colors import ListedColormap
 from sklearn import datasets
+from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
@@ -48,12 +49,20 @@ def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
     
     if test_idx:
         X_test, y_test = X[test_idx, :], y[test_idx]
-        plt.scatter(X_test[:, 0], X_test[:, 1], c=None,
-                    edgecolor='white', alpha=1,
-                    linewidth=1, marker='o',
+        plt.scatter(X_test[:, 0], X_test[:, 1], c='white',
+                    edgecolor='black', alpha=0.3,
+                    linewidth=3, marker='o',
                     s=100, label='test set')
 
-plot_decision_regions(X_combined_std, y_combined, classifier=knn, test_idx=range(105, 150))
+y_pred = knn.predict(X_test)
+accuracy = accuracy_score(y_test,y_pred)
+print(f'Accuracy: {accuracy * 100:.2f}%')
+
+conf_matrix = confusion_matrix(y_test,y_pred)
+print('confushion matrix :')
+print(conf_matrix)
+
+plot_decision_regions(X_combined_std, y_combined, classifier=knn, test_idx=None)
 plt.xlabel('Petal length [standardized]')
 plt.ylabel('Petal width [standardized]')
 plt.legend(loc='upper left')
