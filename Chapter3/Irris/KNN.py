@@ -13,16 +13,12 @@ y = iris.target
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1, stratify=y)
 
-sc = StandardScaler()
-sc.fit(X_train)
-X_train_std = sc.transform(X_train)
-X_test_std = sc.transform(X_test)
 
-X_combined_std = np.vstack((X_train_std, X_test_std))
+X_combined_std = np.vstack((X_train, X_test))
 y_combined = np.hstack((y_train, y_test))
 
 knn = KNeighborsClassifier(n_neighbors=5, p=2, metric='minkowski')
-knn.fit(X_train_std, y_train)
+knn.fit(X_train, y_train)
 
 
 def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
@@ -62,7 +58,7 @@ conf_matrix = confusion_matrix(y_test,y_pred)
 print('confushion matrix :')
 print(conf_matrix)
 
-plot_decision_regions(X_combined_std, y_combined, classifier=knn, test_idx=None)
+plot_decision_regions(X_combined_std, y_combined, classifier=knn, test_idx=range(105,150))
 plt.xlabel('Petal length [standardized]')
 plt.ylabel('Petal width [standardized]')
 plt.legend(loc='upper left')
