@@ -11,9 +11,9 @@ iris = datasets.load_iris()
 X = iris.data[:,:2]  
 y = iris.target
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=23)
 
-mlp = MLPClassifier(hidden_layer_sizes=(100,), activation='relu', solver='adam', alpha=0.0001, max_iter=800)
+mlp = MLPClassifier(hidden_layer_sizes=(24,), activation='relu', solver='adam', alpha=0.0001, max_iter=1000)
 mlp.fit(X_train, y_train)
 
 y_train_pred = mlp.predict(X_train)
@@ -37,7 +37,7 @@ def plot_decision_boundaries(X_train, y_train, X_test, y_test, model, title):
     Z = Z.reshape(xx.shape)
     plt.contourf(xx, yy, Z, alpha=0.8, cmap=ListedColormap(('red', 'lightgreen', 'blue')))
     plt.scatter(X_train[:, 0], X_train[:, 1], c=y_train, edgecolors='k', marker='o', s=20, cmap=ListedColormap(('red', 'lightgreen', 'blue')), label='Train set')
-    plt.scatter(X_test[:, 0], X_test[:, 1], c='white', edgecolor='black', alpha=0.3, linewidth=2, marker='o', s=100, label='Test set')
+    plt.scatter(X_test[:, 0], X_test[:, 1], c='none', edgecolor='black', alpha=0.3, linewidth=2, marker='o', s=100, label='Test set')
     plt.title(title)
     plt.xlabel('sepal length')
     plt.ylabel('sepal width')

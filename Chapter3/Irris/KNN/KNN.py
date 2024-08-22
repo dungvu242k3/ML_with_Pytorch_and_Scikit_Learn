@@ -45,7 +45,7 @@ def plot_decision_regions(X, y, classifier, test_idx=None, resolution=0.02):
     
     if test_idx:
         X_test, y_test = X[test_idx, :], y[test_idx]
-        plt.scatter(X_test[:, 0], X_test[:, 1], c='white',
+        plt.scatter(X_test[:, 0], X_test[:, 1], c='none',
                     edgecolor='black', alpha=0.3,
                     linewidth=3, marker='o',
                     s=100, label='test set')
