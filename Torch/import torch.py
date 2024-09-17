@@ -72,3 +72,4 @@ print(C)
 B = torch.zeros(3)
 S = torch.stack([A,B], axis = 1)
 print(S) 
+
