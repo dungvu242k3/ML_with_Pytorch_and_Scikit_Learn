@@ -31,7 +31,7 @@ print('R2_score (train): ', r2_score_linear_train)
 print('R2_score (test): ', r2_score_linear_test)
 print("RMSE: ", rmse_linear)
 
-plt.figure(figsize=(10,6))
+"""plt.figure(figsize=(10,6))
 plt.scatter(y_test, y_pred_linear_test, label='Linear Regression')
 plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red')
 plt.xlabel('Actual Prices')
@@ -39,4 +39,4 @@ plt.ylabel('Predicted Prices')
 plt.legend()
 plt.show()
 
-print(dataset.head())
+print(dataset.head())"""
